@@ -104,7 +104,8 @@ void loop() {
 
   tft.setTextSize(9); 
   tft.setTextColor(TFT_RED, TFT_BLACK);
-  tft.drawString(getNrSubscriptions(&http, &httpError, id, key, rootca), 10, 45, 1);      
+  String count = getNrSubscriptions(&http, &httpError, id, key, rootca);
+  if (count != "") tft.drawString(getNrSubscriptions(&http, &httpError, id, key, rootca), 10, 45, 1);      
   
   tft.setTextColor( (httpError!=200)?TFT_RED:TFT_GREEN, TFT_BLACK);
   displayHTTPCode(&tft, httpError);
