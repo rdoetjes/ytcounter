@@ -9,10 +9,10 @@ TFT_eSPI tft = TFT_eSPI();  // Invoke library, pins defined in User_Setup.h
 static HTTPClient http;
 static int httpError;
 
-static const char *id = "<your YT channelk id>";
-static const char *key = "<your YT api key>"; 
-static const char *ssid = "<your wifi ssid>";
-static const char *wifipass = "<your wifi password>";
+static const char *id = "<your YT channel id>";
+static const char *key = "<your YT API shared key"; 
+static const char *ssid = "<your WIFI SSID>";
+static const char *wifipass = "<your WIFI password";
 
 static const char* rootca="-----BEGIN CERTIFICATE-----\n" \
 "MIIFWjCCA0KgAwIBAgIQbkepxUtHDA3sM9CJuRz04TANBgkqhkiG9w0BAQwFADBH\n" \
@@ -103,10 +103,10 @@ void loop() {
   }  
 
   tft.setTextSize(9); 
-  tft.setTextColor(TFT_RED); 
+  tft.setTextColor(TFT_RED, TFT_BLACK);
   tft.drawString(getNrSubscriptions(&http, &httpError, id, key, rootca), 10, 45, 1);      
   
-  tft.setTextColor( (httpError!=200)?TFT_RED:TFT_GREEN );
+  tft.setTextColor( (httpError!=200)?TFT_RED:TFT_GREEN, TFT_BLACK);
   displayHTTPCode(&tft, httpError);
   http.end();
     
